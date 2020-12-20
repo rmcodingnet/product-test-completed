@@ -37,33 +37,37 @@ export default function ClosestProducts({ products }) {
             </div>
 
 
-            <table style={{ width: "100%" }}>
-                <tr>
-                    <th>NUMBER</th>
-                    <th>ID</th>
-                    <th>NAME</th>
-                    <th>CATEGORY</th>
-                    <th>PRICE</th>
-                </tr>
-                {nearestProductsList.length > 0 && nearestProductsList.map((product, index) => {
-                    return (
-                        <tr key={index} >
-                            <td>{index + 1}</td>
-                            <td>
-                                {product.id}
-                            </td>
-                            <td>
-                                {product.name}
-                            </td>
-                            <td>
-                                {product.category}
-                            </td>
-                            <td>
-                                {product.price}
-                            </td>
-                        </tr>
-                    )
-                })}
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>NUMBER</th>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>CATEGORY</th>
+                        <th>PRICE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {nearestProductsList.length > 0 && nearestProductsList.map((product, index) => {
+                        return (
+                            <tr key={index} >
+                                <td>{index + 1}</td>
+                                <td>
+                                    {product.id}
+                                </td>
+                                <td>
+                                    {product.name}
+                                </td>
+                                <td>
+                                    {product.category}
+                                </td>
+                                <td>
+                                    {product.price}
+                                </td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
             </table>
         </div>
     )

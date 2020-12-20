@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect } from "react-router-dom";
+import "./FormProduct.css"
 const { v4: uuidv4 } = require('uuid');
 
 export default function FormProduct({ addNewProduct }) {
@@ -29,8 +30,8 @@ export default function FormProduct({ addNewProduct }) {
     }
 
     return (
-        <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-container">
+            <form className="form" onSubmit={(e) => handleSubmit(e)}>
                 <label>NAME</label>
                 <input type="text" value={values.name} onChange={(e) => handleChangeValues({ name: e.target.value })}></input>
                 <label>CATEGORY</label>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import './ProductList.css'
 
 
 const pagination = (data, page = 1, pageLimit = 24) => {
@@ -33,12 +34,16 @@ const ProductList = ({ products }) => {
             } else { return true }
         })
 
+    const clearFilters = () => {
+        setCriteria({ category: "all", minPrice: "", maxPrice: "" })
+    }
+
     return (
         <div className="">
-            <div className={"filers"}>
+            <div className={"filters"}>
                 <label>Category</label>
-                <select name="categories" id="categories" onChange={(e) => handleChangeCriteria({ category: e.target.value })}>
-                    <option value={"all"}>All</option>
+                <select name="categories" id="categories" value={criteria.category} onChange={(e) => handleChangeCriteria({ category: e.target.value })}>
+                    <option value="all">All</option>
                     <option value="meat">Meat</option>
                     <option value="greens">Greens</option>
                     <option value="fish">Fish</option>
@@ -47,6 +52,8 @@ const ProductList = ({ products }) => {
                 <input type="number" name="minPrice" id="minPrice" value={criteria.minPrice} onChange={(e) => handleChangeCriteria({ minPrice: e.target.value })}></input>
                 <label>Max Price</label>
                 <input type="number" name="maxPrice" id="maxPrice" value={criteria.maxPrice} onChange={(e) => handleChangeCriteria({ maxPrice: e.target.value })}></input>
+                <br></br>
+                <button onClick={() => clearFilters()}>CLEAR</button>
             </div>
 
             <div className="pagination">
@@ -55,40 +62,44 @@ const ProductList = ({ products }) => {
                 <button onClick={() => setPage(page + 1)}>NEXT</button>
             </div>
 
-            <table style={{ width: "100%" }}>
-                <tr>
-                    <th>NUMBER</th>
-                    <th>ID</th>
-                    <th>NAME</th>
-                    <th>CATEGORY</th>
-                    <th>PRICE</th>
-                    <th>SIMILAR</th>
-                </tr>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>NUMBER</th>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>CATEGORY</th>
+                        <th>PRICE</th>
+                        <th>SIMILAR</th>
+                    </tr>
+                </thead>
 
-                {filteredProducts.length > 0 && pagination(filteredProducts, page).map((product, index) => {
+                <tbody>
+                    {filteredProducts.length > 0 && pagination(filteredProducts, page).map((product, index) => {
+                        const productNumber = (index + 1) + (page - 1) * 24
+                        return (
 
-                    return (
-
-                        <tr key={index} >
-                            <td>{index + 1}</td>
-                            <td>
-                                {product.id}
-                            </td>
-                            <td>
-                                {product.name}
-                            </td>
-                            <td>
-                                {product.category}
-                            </td>
-                            <td>
-                                {product.price}
-                            </td>
-                            <Link to={`/closestProducts/${product.id}`}> <td><button>SIMILAR</button></td></Link>
-                        </tr>
+                            <tr key={index} >
+                                <td>{productNumber}</td>
+                                <td>
+                                    {product.id}
+                                </td>
+                                <td>
+                                    {product.name}
+                                </td>
+                                <td>
+                                    {product.category}
+                                </td>
+                                <td>
+                                    {product.price}
+                                </td>
+                                <td><Link to={`/closestProducts/${product.id}`}><button>SIMILAR</button></Link></td>
+                            </tr>
 
 
-                    )
-                })}
+                        )
+                    })}
+                </tbody>
 
 
             </table >

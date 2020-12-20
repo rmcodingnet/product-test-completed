@@ -1,0 +1,17 @@
+.pagination {
+  margin: 20px;
+  display: flex;
+  height: 40px;
+  justify-content: space-around;
+  width: 150px;
+  align-items: center;
+}
+
+.table {
+  margin: 20px;
+  width: 60%;
+}
+
+.filters {
+  margin: 20px;
+}
