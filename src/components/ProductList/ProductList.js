@@ -55,31 +55,45 @@ const ProductList = ({ products }) => {
                 <button onClick={() => setPage(page + 1)}>NEXT</button>
             </div>
 
-            <div className="list">
+            <table style={{ width: "100%" }}>
+                <tr>
+                    <th>NUMBER</th>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>CATEGORY</th>
+                    <th>PRICE</th>
+                    <th>SIMILAR</th>
+                </tr>
+
                 {filteredProducts.length > 0 && pagination(filteredProducts, page).map((product, index) => {
+
                     return (
-                        <Link to={`/closestProducts/${product.id}`} key={index} >
-                            <div style={{ border: "1px solid black" }}>
-                                <p>No. {index + 1}</p>
-                                <p>
-                                    ID: {product.id}
-                                </p>
-                                <p>
-                                    NAME: {product.name}
-                                </p>
-                                <p>
-                                    CATEGORY: {product.category}
-                                </p>
-                                <p>
-                                    PRICE: {product.price}
-                                </p>
-                            </div>
-                        </Link>
+
+                        <tr key={index} >
+                            <td>{index + 1}</td>
+                            <td>
+                                {product.id}
+                            </td>
+                            <td>
+                                {product.name}
+                            </td>
+                            <td>
+                                {product.category}
+                            </td>
+                            <td>
+                                {product.price}
+                            </td>
+                            <Link to={`/closestProducts/${product.id}`}> <td><button>SIMILAR</button></td></Link>
+                        </tr>
+
+
                     )
                 })}
-            </div>
 
-        </div>
+
+            </table >
+
+        </div >
     );
 };
 

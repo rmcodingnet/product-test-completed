@@ -36,27 +36,35 @@ export default function ClosestProducts({ products }) {
                 </p>
             </div>
 
-            <div>
+
+            <table style={{ width: "100%" }}>
+                <tr>
+                    <th>NUMBER</th>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>CATEGORY</th>
+                    <th>PRICE</th>
+                </tr>
                 {nearestProductsList.length > 0 && nearestProductsList.map((product, index) => {
                     return (
-                        <div key={index} style={{ border: "1px solid black" }}>
-                            <p>No. {index + 1}</p>
-                            <p>
-                                ID: {product.id}
-                            </p>
-                            <p>
-                                NAME: {product.name}
-                            </p>
-                            <p>
-                                CATEGORY: {product.category}
-                            </p>
-                            <p>
-                                PRICE: {product.price}
-                            </p>
-                        </div>
+                        <tr key={index} >
+                            <td>{index + 1}</td>
+                            <td>
+                                {product.id}
+                            </td>
+                            <td>
+                                {product.name}
+                            </td>
+                            <td>
+                                {product.category}
+                            </td>
+                            <td>
+                                {product.price}
+                            </td>
+                        </tr>
                     )
                 })}
-            </div>
+            </table>
         </div>
     )
 }
