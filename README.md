@@ -1,4 +1,7 @@
 
+
+
+SOLUTION FOR THE TEST CREATED BY FERNANDO LOPEZ
 # Flo-Products Test
 
 Hi applicant!
