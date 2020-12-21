@@ -36,7 +36,6 @@ export default function FormProduct({ addNewProduct }) {
                 <input type="text" value={values.name} onChange={(e) => handleChangeValues({ name: e.target.value })}></input>
                 <label>CATEGORY</label>
                 <select name="categories" id="categories" onChange={(e) => handleChangeValues({ category: e.target.value })}>
-                    <option value={"all"}>All</option>
                     <option value="meat">Meat</option>
                     <option value="greens">Greens</option>
                     <option value="fish">Fish</option>
