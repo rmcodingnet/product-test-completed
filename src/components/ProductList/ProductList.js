@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation} from "react-router-dom";
 import queryString from 'query-string';
 import './ProductList.css'
@@ -20,13 +20,14 @@ const ProductList = ({ products }) => {
 
     let params = null;
 
-    if(location.search != "") {
-        params = queryString.parse(location.search);
-        if(params) {
-            setCriteria({...criteria, ...params})
+    useEffect(() => {
+        if(location.search !== "") {
+            params = queryString.parse(location.search);
+            if(params) {
+                setCriteria({...criteria, ...params})
+            }
         }
-    }
-
+    },[])
     
 
     const handleChangeCriteria = (newCriteria) => {
