@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation} from "react-router-dom";
+import queryString from 'query-string';
 import './ProductList.css'
 
 
@@ -13,8 +14,24 @@ const ProductList = ({ products }) => {
     const [page, setPage] = useState(1)
     const [criteria, setCriteria] = useState({ category: "all", minPrice: "", maxPrice: "" })
 
+    const history = useHistory();
+
+    const location = useLocation();
+
+    let params = null;
+
+    if(location.search != "") {
+        params = queryString.parse(location.search);
+        if(params) {
+            setCriteria({...criteria, ...params})
+        }
+    }
+
+    
+
     const handleChangeCriteria = (newCriteria) => {
         setCriteria({ ...criteria, ...newCriteria });
+        history.push({pathname: '/', search: `?category=${criteria.category}&minPrice=${criteria.minPrice}&maxPrice=${criteria.maxPrice}`})
     }
 
     const filteredProducts = products
